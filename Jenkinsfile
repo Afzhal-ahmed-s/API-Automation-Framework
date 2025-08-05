@@ -46,10 +46,14 @@ pipeline {
     stage('Archive Reports') {
       steps {
         publishHTML([
+          allowMissing: false,
+          alwaysLinkToLastBuild: true,
+          keepAll: true,
           reportDir: 'reports',
           reportFiles: 'Test_Report_*.html',
           reportName: 'Extent Report'
         ])
+
       }
     }
   }
