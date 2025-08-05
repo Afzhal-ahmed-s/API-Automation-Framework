@@ -1,0 +1,251 @@
+2025-08-05 12:20:12.087 [main] DEBUG org.testng.TestNG - suiteXmlPath: "/home/afzhal/MyNotes/Power/API automation/API-Automation-Framework/testng.xml"
+2025-08-05 12:20:12.123 [main] INFO  org.testng.internal.Utils - [XmlSuite] [WARN] 'parallel' value 'false' is no longer valid, defaulting to 'none'.
+2025-08-05 12:20:12.541 [main] INFO  api.tests.UserTests - Setup completed for UserTests
+2025-08-05 12:20:12.552 [main] INFO  api.tests.UserTests - Starting test: test_createUser
+2025-08-05 12:20:12.553 [main] INFO  api.tests.UserTests - Creating user with username: apitestuser123
+2025-08-05 12:20:15.604 [main] DEBUG api.tests.UserTests - Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "12345"
+}
+2025-08-05 12:20:15.606 [main] INFO  api.tests.UserTests - User created successfully: apitestuser123
+2025-08-05 12:20:15.619 [main] INFO  api.tests.UserTests - Starting test: test_getUserByName
+2025-08-05 12:20:15.620 [main] INFO  api.tests.UserTests - Fetching user with username: apitestuser123
+2025-08-05 12:20:16.900 [main] DEBUG api.tests.UserTests - Response: {
+    "code": 1,
+    "type": "error",
+    "message": "User not found"
+}
+2025-08-05 12:20:16.926 [main] INFO  api.tests.UserTests - Starting test: test_getUserByName
+2025-08-05 12:20:16.927 [main] INFO  api.tests.UserTests - Fetching user with username: apitestuser123
+2025-08-05 12:20:18.120 [main] DEBUG api.tests.UserTests - Response: {
+    "code": 1,
+    "type": "error",
+    "message": "User not found"
+}
+2025-08-05 12:20:18.122 [main] INFO  api.tests.UserTests - Starting test: test_getUserByName
+2025-08-05 12:20:18.122 [main] INFO  api.tests.UserTests - Fetching user with username: apitestuser123
+2025-08-05 12:20:19.481 [main] DEBUG api.tests.UserTests - Response: {
+    "code": 1,
+    "type": "error",
+    "message": "User not found"
+}
+2025-08-05 12:20:19.484 [main] INFO  api.tests.UserTests - Starting test: test_getUserByName
+2025-08-05 12:20:19.485 [main] INFO  api.tests.UserTests - Fetching user with username: apitestuser123
+2025-08-05 12:20:20.718 [main] DEBUG api.tests.UserTests - Response: {
+    "code": 1,
+    "type": "error",
+    "message": "User not found"
+}
+2025-08-05 12:20:20.724 [main] INFO  api.tests.UserTests - Starting test: test_getUserByName
+2025-08-05 12:20:20.726 [main] INFO  api.tests.UserTests - Fetching user with username: apitestuser123
+2025-08-05 12:20:22.044 [main] DEBUG api.tests.UserTests - Response: {
+    "code": 1,
+    "type": "error",
+    "message": "User not found"
+}
+2025-08-05 12:20:22.048 [main] INFO  api.tests.UserTests - Starting test: test_getUserByName
+2025-08-05 12:20:22.049 [main] INFO  api.tests.UserTests - Fetching user with username: apitestuser123
+2025-08-05 12:20:23.343 [main] DEBUG api.tests.UserTests - Response: {
+    "id": 12345,
+    "username": "apitestuser123",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "password": "Test@123",
+    "phone": "1234567890",
+    "userStatus": 1
+}
+2025-08-05 12:20:23.344 [main] INFO  api.tests.UserTests - User fetched successfully: apitestuser123
+2025-08-05 12:20:23.347 [main] INFO  api.tests.UserTests - Starting test: test_modifyUser
+2025-08-05 12:20:23.348 [main] INFO  api.tests.UserTests - Modifying user with username: apitestuser123
+2025-08-05 12:20:25.060 [main] DEBUG api.tests.UserTests - Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "12345"
+}
+2025-08-05 12:20:25.061 [main] INFO  api.tests.UserTests - User modified successfully: apitestuser123
+2025-08-05 12:20:25.063 [main] INFO  api.tests.UserTests - Starting test: test_deleteUserByName
+2025-08-05 12:20:25.063 [main] INFO  api.tests.UserTests - Deleting user with username: apitestuser123
+2025-08-05 12:20:26.322 [main] DEBUG api.tests.UserTests - Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "apitestuser123"
+}
+2025-08-05 12:20:26.323 [main] INFO  api.tests.UserTests - User deleted successfully: apitestuser123
+2025-08-05 12:20:26.334 [main] INFO  api.tests.UserTests - Starting test: test_createUser
+2025-08-05 12:20:26.335 [main] INFO  api.tests.UserTests - Creating user with username: apitestuser123
+2025-08-05 12:20:31.400 [main] DEBUG api.tests.UserTests - Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "12345"
+}
+2025-08-05 12:20:31.401 [main] INFO  api.tests.UserTests - User created successfully: apitestuser123
+2025-08-05 12:20:31.403 [main] INFO  api.tests.UserTests - Starting test: test_getUserByName
+2025-08-05 12:20:31.403 [main] INFO  api.tests.UserTests - Fetching user with username: apitestuser123
+2025-08-05 12:20:32.592 [main] DEBUG api.tests.UserTests - Response: {
+    "id": 12345,
+    "username": "apitestuser123",
+    "firstName": "Sylva Santagar",
+    "lastName": "Waters",
+    "email": "sue.wisoky@example.com",
+    "password": "Test@123",
+    "phone": "1234567890",
+    "userStatus": 1
+}
+2025-08-05 12:20:32.592 [main] INFO  api.tests.UserTests - User fetched successfully: apitestuser123
+2025-08-05 12:20:32.595 [main] INFO  api.tests.UserTests - Starting test: test_modifyUser
+2025-08-05 12:20:32.595 [main] INFO  api.tests.UserTests - Modifying user with username: apitestuser123
+2025-08-05 12:20:33.792 [main] DEBUG api.tests.UserTests - Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "12345"
+}
+2025-08-05 12:20:33.793 [main] INFO  api.tests.UserTests - User modified successfully: apitestuser123
+2025-08-05 12:20:33.795 [main] INFO  api.tests.UserTests - Starting test: test_deleteUserByName
+2025-08-05 12:20:33.795 [main] INFO  api.tests.UserTests - Deleting user with username: apitestuser123
+2025-08-05 12:20:35.003 [main] DEBUG api.tests.UserTests - Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "apitestuser123"
+}
+2025-08-05 12:20:35.004 [main] INFO  api.tests.UserTests - User deleted successfully: apitestuser123
+2025-08-05 12:20:35.421 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:35.425 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.054 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.055 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.091 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.093 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.139 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.141 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.170 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.172 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.196 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.197 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.221 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.222 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.247 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.249 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.272 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.274 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.297 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.299 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.322 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.324 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.346 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.348 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.370 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.371 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.392 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.394 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.414 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.416 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.434 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.436 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.459 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.460 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.476 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.478 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.496 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.497 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.514 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.515 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.533 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.534 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.552 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.553 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.569 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:36.571 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:36.585 [main] INFO  api.tests.DDTests - Starting test: test_createUser
+2025-08-05 12:20:36.586 [main] INFO  api.tests.DDTests - Creating user with username: testuser1
+2025-08-05 12:20:37.795 [main] DEBUG api.tests.DDTests - Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "1010"
+}
+2025-08-05 12:20:37.796 [main] INFO  api.tests.DDTests - User created successfully: testuser1
+2025-08-05 12:20:37.800 [main] INFO  api.tests.DDTests - Starting test: test_createUser
+2025-08-05 12:20:37.801 [main] INFO  api.tests.DDTests - Creating user with username: testuser2
+2025-08-05 12:20:39.075 [main] DEBUG api.tests.DDTests - Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "1020"
+}
+2025-08-05 12:20:39.076 [main] INFO  api.tests.DDTests - User created successfully: testuser2
+2025-08-05 12:20:39.080 [main] INFO  api.tests.DDTests - Starting test: test_createUser
+2025-08-05 12:20:39.081 [main] INFO  api.tests.DDTests - Creating user with username: testuser3
+2025-08-05 12:20:40.264 [main] DEBUG api.tests.DDTests - Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "1030"
+}
+2025-08-05 12:20:40.265 [main] INFO  api.tests.DDTests - User created successfully: testuser3
+2025-08-05 12:20:40.272 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:40.273 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:40.290 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:40.292 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:40.350 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:40.352 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:40.381 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /xl/_rels/workbook.xml.rels
+2025-08-05 12:20:40.383 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+2025-08-05 12:20:40.412 [main] INFO  api.tests.DDTests - Starting test: test_deleteUser
+2025-08-05 12:20:40.413 [main] INFO  api.tests.DDTests - Attempting to delete user: testuser1
+2025-08-05 12:20:41.697 [main] INFO  api.tests.DDTests - getUser Response: {
+    "id": 9223372036854754568,
+    "username": "testuser1",
+    "firstName": "Updated",
+    "lastName": "Name",
+    "email": "updated@example.com",
+    "password": "password123",
+    "phone": "9998887777",
+    "userStatus": 1
+}
+2025-08-05 12:20:41.698 [main] INFO  api.tests.DDTests - Sending delete request for user: testuser1
+2025-08-05 12:20:42.925 [main] INFO  api.tests.DDTests - Delete Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "testuser1"
+}
+2025-08-05 12:20:42.926 [main] INFO  api.tests.DDTests - User deleted successfully: testuser1
+2025-08-05 12:20:42.929 [main] INFO  api.tests.DDTests - Starting test: test_deleteUser
+2025-08-05 12:20:42.930 [main] INFO  api.tests.DDTests - Attempting to delete user: testuser2
+2025-08-05 12:20:44.263 [main] INFO  api.tests.DDTests - getUser Response: {
+    "id": 1020,
+    "username": "testuser2",
+    "firstName": "Kim",
+    "lastName": "Kom",
+    "email": "A@gmail.com",
+    "password": "test@2",
+    "phone": "1234567897",
+    "userStatus": 1
+}
+2025-08-05 12:20:44.264 [main] INFO  api.tests.DDTests - Sending delete request for user: testuser2
+2025-08-05 12:20:45.637 [main] INFO  api.tests.DDTests - Delete Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "testuser2"
+}
+2025-08-05 12:20:45.638 [main] INFO  api.tests.DDTests - User deleted successfully: testuser2
+2025-08-05 12:20:45.639 [main] INFO  api.tests.DDTests - Starting test: test_deleteUser
+2025-08-05 12:20:45.639 [main] INFO  api.tests.DDTests - Attempting to delete user: testuser3
+2025-08-05 12:20:46.905 [main] INFO  api.tests.DDTests - getUser Response: {
+    "id": 1030,
+    "username": "testuser3",
+    "firstName": "Smith",
+    "lastName": "Steve",
+    "email": "A@gmail.com",
+    "password": "test@3",
+    "phone": "1234567897",
+    "userStatus": 1
+}
+2025-08-05 12:20:46.905 [main] INFO  api.tests.DDTests - Sending delete request for user: testuser3
+2025-08-05 12:20:48.227 [main] INFO  api.tests.DDTests - Delete Response: 
+2025-08-05 12:20:48.228 [main] WARN  api.tests.DDTests - Retrying delete operation: Attempt 1
+2025-08-05 12:20:50.734 [main] INFO  api.tests.DDTests - Delete Response: 
+2025-08-05 12:20:50.735 [main] WARN  api.tests.DDTests - Retrying delete operation: Attempt 2
+2025-08-05 12:20:53.140 [main] INFO  api.tests.DDTests - Delete Response: {
+    "code": 200,
+    "type": "unknown",
+    "message": "testuser3"
+}
+2025-08-05 12:20:53.141 [main] INFO  api.tests.DDTests - User deleted successfully: testuser3
