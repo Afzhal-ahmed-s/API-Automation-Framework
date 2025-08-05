@@ -12,26 +12,27 @@ import org.testng.annotations.Test;
 public class DDTests {
 
     @Test(priority = 1, dataProvider = "Data", dataProviderClass = DataProviders.class)
-    public void test_createUser(String userId, String userName, String firstName, String lastName, String email, String password, String phone) {
-        log.info("Starting test: test_createUser");
-        log.info("Creating user with username: " + userName);
+    public void test_createUser(String userId, String userName, String firstName, String lastName, String email, String password, String phone){
 
-        User userPayload = new User(Integer.parseInt(userId), userName, firstName, lastName, email, password, phone, 1);
+        User userPayload = new User(Integer.parseInt(userId), userName, firstName,lastName,email, password, phone, 1);
+
         Response response = UserEndpoints.createUser(userPayload);
 
-        log.debug("Response: " + response.then().extract().asPrettyString());
-        Assert.assertEquals(response.getStatusCode(), 200, "User creation failed");
-        log.info("User created successfully: " + userName);
+        log.info(response.then().extract().asPrettyString());
+
+        Assert.assertEquals(response.getStatusCode(), 200);
+
     }
 
     @Test(priority = 2, dataProvider = "UserNames", dataProviderClass = DataProviders.class)
     public void test_deleteUser(String userName) {
-        log.info("Starting test: test_deleteUser");
-        log.info("Attempting to delete user: " + userName);
+
+        log.debug("Attempting to delete user: " + userName);
 
         // Retry logic for transient backend issues
         int retryCount = 5;
         boolean userExists = false;
+
         Response getUserResponse = null;
 
         for (int i = 0; i < retryCount; i++) {
@@ -53,10 +54,14 @@ public class DDTests {
             Assert.fail("Cannot delete user as it does not exist: " + userName);
         }
 
+        // Log the getUser response for debugging
         log.info("getUser Response: " + getUserResponse.then().extract().asPrettyString());
 
         // Proceed to delete the user
-        log.info("Sending delete request for user: " + userName);
+        // Log the deleteUser request details
+        log.debug("Sending delete request for user: " + userName);
+
+        // Retry logic for delete operation
         int deleteRetryCount = 5;
         boolean deleteSuccess = false;
 
@@ -81,8 +86,6 @@ public class DDTests {
             log.error("Failed to delete user after retries: " + userName);
             Assert.fail("Failed to delete user: " + userName);
         }
-
-        log.info("User deleted successfully: " + userName);
     }
 
 
