@@ -63,16 +63,20 @@ pipeline {
 
     stage('Publish Report') {
       steps {
-        publishHTML([
-          allowMissing: false,
-          alwaysLinkToLastBuild: true,
-          keepAll: true,
-          reportDir: "reports/build-${BUILD_NUMBER}",
-          reportFiles: 'Test_Report_*.html',
-          reportName: "Extent Report"
-        ])
+        script {
+          def reportFile = sh(script: "ls reports/Test_Report_*.html | tail -n 1", returnStdout: true).trim()
+          publishHTML([
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'reports',
+            reportFiles: reportFile.replaceAll('reports/', ''),
+            reportName: 'Extent Report'
+          ])
+        }
       }
     }
+
 
     stage('Publish Logs') {
       steps {
