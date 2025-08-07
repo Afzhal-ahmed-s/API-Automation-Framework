@@ -42,19 +42,9 @@ pipeline {
       }
     }
 
-    stage('Save Jenkins Console Log') {
-      steps {
-        script {
-          def timestamp = new Date().format("yyyy-MM-dd_HH-mm-ss")
-          def logFileName = "logs/jenkins-console-${timestamp}.log"
-          writeFile file: logFileName, text: currentBuild.rawBuild.getLog().join('\n')
-        }
-      }
-    }
-
     stage('Archive Reports and Logs') {
       steps {
-        archiveArtifacts artifacts: 'logs/**', allowEmptyArchive: false
+        archiveArtifacts artifacts: 'logs/**', allowEmptyArchive: true
         archiveArtifacts artifacts: 'reports/**', allowEmptyArchive: true
       }
     }
