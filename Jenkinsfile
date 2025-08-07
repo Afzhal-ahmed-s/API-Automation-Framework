@@ -4,6 +4,7 @@ pipeline {
   environment {
     IMAGE_NAME = 'afzhalahmeds/api-tests'
     TAG = 'latest'
+    TIME = "${new Date().format('yyyy-MM-dd_HH-mm-ss')}"
   }
 
   stages {
@@ -33,19 +34,57 @@ pipeline {
     stage('Run Tests in Container') {
       steps {
         sh '''
+          rm -rf logs reports
           mkdir -p logs reports
+
           docker run --rm \
-            -v "$(pwd)/logs:/app/logs" \
-            -v "$(pwd)/reports:/app/reports" \
+            -v "$PWD/logs:/app/logs" \
+            -v "$PWD/reports:/app/reports" \
             $IMAGE_NAME:$TAG
         '''
       }
     }
 
-    stage('Archive Reports and Logs') {
+    stage('Archive Artifacts') {
       steps {
-        archiveArtifacts artifacts: 'logs/**', allowEmptyArchive: true
-        archiveArtifacts artifacts: 'reports/**', allowEmptyArchive: true
+        archiveArtifacts artifacts: 'logs/**', allowEmptyArchive: false
+        archiveArtifacts artifacts: 'reports/**', allowEmptyArchive: false
+      }
+    }
+
+    stage('Publish Extent Report') {
+      steps {
+        publishHTML([
+          allowMissing: false,
+          alwaysLinkToLastBuild: true,
+          keepAll: true,
+          reportDir: 'reports',
+          reportFiles: 'Test_Report_*.html',
+          reportName: 'Extent Report'
+        ])
+      }
+    }
+
+    stage('Publish Logs Panel') {
+      steps {
+        script {
+          // Dynamically find the latest log file
+          def logFile = sh(script: "ls -1 logs/automation_*.log | tail -1", returnStdout: true).trim()
+
+          sh """
+            mkdir -p logs_html
+            cp ${logFile} logs_html/automation.html
+          """
+
+          publishHTML([
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'logs_html',
+            reportFiles: 'automation.html',
+            reportName: 'Logs'
+          ])
+        }
       }
     }
   }
