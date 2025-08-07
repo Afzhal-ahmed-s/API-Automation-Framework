@@ -25,41 +25,39 @@ pipeline {
     stage('Push to DockerHub') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-          sh """
-            echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin
-            docker push $IMAGE_NAME:$TAG
-          """
+          sh '''
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+            docker push afzhalahmeds/api-tests:latest
+          '''
         }
       }
     }
 
     stage('Run Tests in Container') {
       steps {
-        sh """
+        sh '''
           docker run --rm \
             -v $(pwd)/logs:/app/logs \
             -v $(pwd)/reports:/app/reports \
             $IMAGE_NAME:$TAG
-        """
+        '''
       }
     }
 
     stage('Organize Logs and Reports') {
       steps {
-        script {
-          sh """
-            mkdir -p ${BUILD_REPORT_DIR} ${BUILD_LOG_DIR}
+        sh '''
+          mkdir -p logs/build-${BUILD_NUMBER} reports/build-${BUILD_NUMBER}
+          mv reports/Test_Report_*.html reports/build-${BUILD_NUMBER}/ || echo "No report found"
+          mv logs/automation-*.log logs/build-${BUILD_NUMBER}/ 2>/dev/null || true
 
-            # Move report file(s)
-            mv reports/Test_Report_*.html ${BUILD_REPORT_DIR}/ || echo "No report found"
+          for file in logs/build-${BUILD_NUMBER}/automation-*.log; do
+            name=$(basename "$file" .log)
+            echo "<html><body><pre>$(cat \"$file\")</pre></body></html>" > logs/build-${BUILD_NUMBER}/${name}.html
+          done
 
-            # Move log file(s) if any
-            mv logs/automation-*.log ${BUILD_LOG_DIR}/ 2>/dev/null || true
-
-            # Copy latest for Jenkins HTML Publisher
-            cp ${BUILD_REPORT_DIR}/Test_Report_*.html reports/latest.html || echo "Latest report copy failed"
-          """
-        }
+          cp reports/build-${BUILD_NUMBER}/Test_Report_*.html reports/latest.html || echo "Latest report copy failed"
+        '''
       }
     }
 
@@ -69,10 +67,29 @@ pipeline {
           allowMissing: false,
           alwaysLinkToLastBuild: true,
           keepAll: true,
-          reportDir: 'reports',
-          reportFiles: 'latest.html',
-          reportName: 'Extent Report'
+          reportDir: "reports/build-${BUILD_NUMBER}",
+          reportFiles: 'Test_Report_*.html',
+          reportName: "Extent Report"
         ])
+      }
+    }
+
+    stage('Publish Logs') {
+      steps {
+        publishHTML([
+          allowMissing: true,
+          alwaysLinkToLastBuild: true,
+          keepAll: true,
+          reportDir: "logs/build-${BUILD_NUMBER}",
+          reportFiles: '*.html',
+          reportName: "Execution Logs"
+        ])
+      }
+    }
+
+    stage('Archive Logs') {
+      steps {
+        archiveArtifacts artifacts: "logs/build-${BUILD_NUMBER}/automation-*.log", allowEmptyArchive: true
       }
     }
   }
