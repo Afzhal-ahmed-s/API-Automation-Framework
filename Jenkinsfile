@@ -1,6 +1,11 @@
 pipeline {
   agent any
 
+  triggers {
+    // Runs once every day at 2 AM IST (which is 20:30 UTC the previous day)
+    cron('H 20 * * *')
+  }
+
   environment {
     IMAGE_NAME = 'afzhalahmeds/api-tests'
     TAG = 'latest'
@@ -68,7 +73,6 @@ pipeline {
     stage('Publish Logs Panel') {
       steps {
         script {
-          // Dynamically find the latest log file
           def logFile = sh(script: "ls -1 logs/automation_*.log | tail -1", returnStdout: true).trim()
 
           sh """
@@ -86,6 +90,46 @@ pipeline {
           ])
         }
       }
+    }
+  }
+
+  post {
+    success {
+      emailext (
+        to: 'your_email@example.com',
+        subject: "✅ Build SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+        body: """Hi Team,
+
+The scheduled Jenkins build completed successfully.
+
+📝 *Job*: ${env.JOB_NAME}
+🔢 *Build*: #${env.BUILD_NUMBER}
+📊 *Report*: ${env.BUILD_URL}report/Extent_20Report/
+
+Regards,
+Jenkins CI
+"""
+      )
+    }
+
+    failure {
+      emailext (
+        to: 'your_email@example.com',
+        subject: "❌ Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+        body: """Hi Team,
+
+The scheduled Jenkins build failed.
+
+📝 *Job*: ${env.JOB_NAME}
+🔢 *Build*: #${env.BUILD_NUMBER}
+📎 *Logs/Report*: ${env.BUILD_URL}
+
+Please investigate.
+
+Regards,
+Jenkins CI
+"""
+      )
     }
   }
 }
