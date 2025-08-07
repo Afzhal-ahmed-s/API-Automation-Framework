@@ -50,6 +50,12 @@ pipeline {
           mkdir -p logs/build-${BUILD_NUMBER} reports/build-${BUILD_NUMBER}
           mv reports/Test_Report_*.html reports/build-${BUILD_NUMBER}/ || echo "No report found"
           mv logs/automation-*.log logs/build-${BUILD_NUMBER}/ 2>/dev/null || true
+
+          for file in logs/build-${BUILD_NUMBER}/automation-*.log; do
+            name=$(basename "$file" .log)
+            echo "<html><body><pre>$(cat \"$file\")</pre></body></html>" > logs/build-${BUILD_NUMBER}/${name}.html
+          done
+
           cp reports/build-${BUILD_NUMBER}/Test_Report_*.html reports/latest.html || echo "Latest report copy failed"
         '''
       }
@@ -61,10 +67,29 @@ pipeline {
           allowMissing: false,
           alwaysLinkToLastBuild: true,
           keepAll: true,
-          reportDir: 'reports',
-          reportFiles: 'latest.html',
-          reportName: 'Extent Report'
+          reportDir: "reports/build-${BUILD_NUMBER}",
+          reportFiles: 'Test_Report_*.html',
+          reportName: "Extent Report"
         ])
+      }
+    }
+
+    stage('Publish Logs') {
+      steps {
+        publishHTML([
+          allowMissing: true,
+          alwaysLinkToLastBuild: true,
+          keepAll: true,
+          reportDir: "logs/build-${BUILD_NUMBER}",
+          reportFiles: '*.html',
+          reportName: "Execution Logs"
+        ])
+      }
+    }
+
+    stage('Archive Logs') {
+      steps {
+        archiveArtifacts artifacts: "logs/build-${BUILD_NUMBER}/automation-*.log", allowEmptyArchive: true
       }
     }
   }
