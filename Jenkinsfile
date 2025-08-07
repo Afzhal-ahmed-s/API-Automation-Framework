@@ -34,20 +34,28 @@ pipeline {
       steps {
         sh '''
           mkdir -p logs reports
-
           docker run --rm \
             -v "$(pwd)/logs:/app/logs" \
             -v "$(pwd)/reports:/app/reports" \
-            $IMAGE_NAME:$TAG | tee logs/automation-$(date +"%Y-%m-%d_%H-%M-%S").log
+            $IMAGE_NAME:$TAG
         '''
       }
     }
 
+    stage('Save Jenkins Console Log') {
+      steps {
+        script {
+          def timestamp = new Date().format("yyyy-MM-dd_HH-mm-ss")
+          def logFileName = "logs/jenkins-console-${timestamp}.log"
+          writeFile file: logFileName, text: currentBuild.rawBuild.getLog().join('\n')
+        }
+      }
+    }
 
     stage('Archive Reports and Logs') {
       steps {
+        archiveArtifacts artifacts: 'logs/**', allowEmptyArchive: false
         archiveArtifacts artifacts: 'reports/**', allowEmptyArchive: true
-        archiveArtifacts artifacts: 'logs/**', allowEmptyArchive: true
       }
     }
   }
