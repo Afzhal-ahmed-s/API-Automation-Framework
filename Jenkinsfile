@@ -33,13 +33,16 @@ pipeline {
     stage('Run Tests in Container') {
       steps {
         sh '''
+          mkdir -p logs reports
+
           docker run --rm \
-            -v $(pwd)/logs:/app/logs \
-            -v $(pwd)/reports:/app/reports \
-            $IMAGE_NAME:$TAG
+            -v "$(pwd)/logs:/app/logs" \
+            -v "$(pwd)/reports:/app/reports" \
+            $IMAGE_NAME:$TAG | tee logs/automation-$(date +"%Y-%m-%d_%H-%M-%S").log
         '''
       }
     }
+
 
     stage('Archive Reports and Logs') {
       steps {
