@@ -25,41 +25,33 @@ pipeline {
     stage('Push to DockerHub') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-          sh """
-            echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin
-            docker push $IMAGE_NAME:$TAG
-          """
+          sh '''
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+            docker push afzhalahmeds/api-tests:latest
+          '''
         }
       }
     }
 
     stage('Run Tests in Container') {
       steps {
-        sh """
+        sh '''
           docker run --rm \
             -v $(pwd)/logs:/app/logs \
             -v $(pwd)/reports:/app/reports \
             $IMAGE_NAME:$TAG
-        """
+        '''
       }
     }
 
     stage('Organize Logs and Reports') {
       steps {
-        script {
-          sh """
-            mkdir -p ${BUILD_REPORT_DIR} ${BUILD_LOG_DIR}
-
-            # Move report file(s)
-            mv reports/Test_Report_*.html ${BUILD_REPORT_DIR}/ || echo "No report found"
-
-            # Move log file(s) if any
-            mv logs/automation-*.log ${BUILD_LOG_DIR}/ 2>/dev/null || true
-
-            # Copy latest for Jenkins HTML Publisher
-            cp ${BUILD_REPORT_DIR}/Test_Report_*.html reports/latest.html || echo "Latest report copy failed"
-          """
-        }
+        sh '''
+          mkdir -p logs/build-${BUILD_NUMBER} reports/build-${BUILD_NUMBER}
+          mv reports/Test_Report_*.html reports/build-${BUILD_NUMBER}/ || echo "No report found"
+          mv logs/automation-*.log logs/build-${BUILD_NUMBER}/ 2>/dev/null || true
+          cp reports/build-${BUILD_NUMBER}/Test_Report_*.html reports/latest.html || echo "Latest report copy failed"
+        '''
       }
     }
 
